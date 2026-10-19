@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://les-siciliens.rentanoo.com/sitemap.xml
