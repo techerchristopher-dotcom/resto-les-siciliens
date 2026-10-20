@@ -88,11 +88,11 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
 </div>
 <main class="wrap">
   <div class="actions">
-    <a class="btn main" href="#reserver">Prenota un tavolo</a>
-    <a class="btn" href="tel:+261348610294">📞 +261348610294</a>
-    <a class="btn" href="https://wa.me/261348610294" target="_blank" rel="noopener">WhatsApp</a>
-    <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=-13.4048975,48.2732053" target="_blank" rel="noopener">🧭 Indicazioni</a>
-    <a class="btn" href="https://les-siciliens.rentanoo.com/carte.pdf" target="_blank" rel="noopener" download>📄 Scarica il menù</a>
+    <a class="btn main" href="#reserver" data-ev="reserver">Prenota un tavolo</a>
+    <a class="btn" data-ev="appel" href="tel:+261348610294">📞 +261348610294</a>
+    <a class="btn" data-ev="whatsapp" href="https://wa.me/261348610294" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn" data-ev="itineraire" href="https://www.google.com/maps/dir/?api=1&destination=-13.4048975,48.2732053" target="_blank" rel="noopener">🧭 Indicazioni</a>
+    <a class="btn" data-ev="carte_pdf" href="https://les-siciliens.rentanoo.com/carte.pdf" target="_blank" rel="noopener" download>📄 Scarica il menù</a>
   </div>
 
   <section><p class="desc">Una pizzeria italiana a Hell-Ville: pizze (margherita, marinara, prosciutto, frutti di mare), pasta fatta in casa (carbonara, amatriciana, lasagne, « Les Siciliens ») e antipasti come la parmigiana. Anche burger e pollo alla milanese. Aperto a pranzo e a cena dal lunedì al sabato.</p></section>
@@ -100,8 +100,8 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
   <section class="deux">
     <h2>Al ristorante o a domicilio: scegli tu</h2>
     <div class="deux-g">
-      <a class="choix" href="#reserver"><span class="ic">🍽️</span><span><b>Mangiare sul posto</b><small>Prenota il tuo tavolo gratis: avvisiamo noi il ristorante.</small></span></a>
-      <a class="choix tf" href="https://taxifoodnosybe.distripro207.com/r/aee1c612-5ee0-402b-a7b4-aec9c6825b0b" target="_blank" rel="noopener"><img src="https://rentanoo.com/partenaires/taxifood.png" alt="Taxi Food" width="44" height="44"><span><b>Fatti consegnare con Taxi Food</b><small>Ordina i suoi piatti online, consegnati a casa, in hotel o in spiaggia. Codice <strong>TAXIFOOD50</strong>: consegna a metà prezzo la prima volta.</small></span></a>
+      <a class="choix" href="#reserver" data-ev="reserver"><span class="ic">🍽️</span><span><b>Mangiare sul posto</b><small>Prenota il tuo tavolo gratis: avvisiamo noi il ristorante.</small></span></a>
+      <a class="choix tf" data-ev="taxifood" href="https://taxifoodnosybe.distripro207.com/r/aee1c612-5ee0-402b-a7b4-aec9c6825b0b" target="_blank" rel="noopener"><img src="https://rentanoo.com/partenaires/taxifood.png" alt="Taxi Food" width="44" height="44"><span><b>Fatti consegnare con Taxi Food</b><small>Ordina i suoi piatti online, consegnati a casa, in hotel o in spiaggia. Codice <strong>TAXIFOOD50</strong>: consegna a metà prezzo la prima volta.</small></span></a>
     </div>
   </section>
 
@@ -134,7 +134,7 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
     </form>
   </section>
 </main>
-<div class="stick"><a class="btn main" href="#reserver">Prenota un tavolo</a></div>
+<div class="stick"><a class="btn main" href="#reserver" data-ev="reserver">Prenota un tavolo</a></div>
 <footer><div class="wrap">
   <p>Les Siciliens · Hell-Ville, Nosy Be, Madagascar · +261348610294</p>
   <p>Prenotazione del tavolo gestita da <a href="https://rentanoo.com/restaurant/les-siciliens">Rentanoo</a> · consegna con <a href="https://taxifoodnosybe.distripro207.com/r/aee1c612-5ee0-402b-a7b4-aec9c6825b0b">Taxi Food</a>, il tuo compagno a Nosy Be: escursioni, taxi-boat, transfer, alloggi. <a href="https://rentanoo.com/restos">Vedi tutti i ristoranti →</a></p>
@@ -142,6 +142,10 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
 <script>
 (function(){
   var H={"1":[["09:30","13:50"],["18:00","20:50"]],"2":[["09:30","13:50"],["18:00","20:50"]],"3":[["09:30","13:50"],["18:00","20:50"]],"4":[["09:30","13:50"],["18:00","20:50"]],"5":[["09:30","13:50"],["18:00","20:50"]],"6":[["09:30","13:50"],["18:00","20:50"]],"7":[]}, L={"envoi":"Invio…","ok":"✅ Richiesta inviata! Chiamiamo Les Siciliens per prenotare il tuo tavolo, poi ti confermiamo su WhatsApp.","err":"La richiesta non è partita. Riprova.","choisir":"Scegli","fermeJour":"Chiuso quel giorno","auj":"Oggi","fermeAuj":"Chiuso oggi"}, LANG="it";
+  // Statistiques (vues et clics) pour le rapport hebdomadaire du restaurant — aucune donnée personnelle
+  function ev(e){try{navigator.sendBeacon('https://rentanoo.com/api/resto-event',JSON.stringify({slug:"les-siciliens",s:'site',e:e,lang:LANG,ref:document.referrer}))}catch(x){}}
+  ev('vue');
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(a)ev(a.getAttribute('data-ev'))});
   var f=document.getElementById('resa'),msg=document.getElementById('msg');
   var tz='Indian/Antananarivo';
   function ymd(d){return new Intl.DateTimeFormat('en-CA',{timeZone:tz}).format(d)}
